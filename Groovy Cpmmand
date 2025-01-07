@@ -1,21 +1,48 @@
+#------for window----------------------------
+
 pipeline {
 agent any
 
-    stages {
-        stage('Git clone from GITHUB') {
-            steps {
-            git branch: 'main', url: 'https://github.com/DevSecOpsG/helloworldsimplejavaprogram'
-            }
-        }
-        stage('Build by itiyo'){
-            steps{
-            sh 'javac helloworld.java'
-            }
-        }
-        stage('Run by java'){
-            steps{
-            sh 'java Simple'
-            }
-        }
-    }
+    stages {
+        stage('Git clone from GITHUB') {
+            steps {
+            git branch: 'main', url: 'https://github.com/DevSecOpsG/helloworldsimplejavaprogram'
+            }
+        }
+        stage('Build by itiyo'){
+            steps{
+            bat '''set C:\\Program Files\\Java\\jdk-21
+            javac helloworld.java'''
+            }
+        }
+        stage('Run by java'){
+            steps{
+            bat 'java Simple'
+            }
+        }
+    }
+}
+
+#------for Linux----------------------------
+
+pipeline {
+agent any
+
+    stages {
+        stage('Git clone from GITHUB') {
+            steps {
+            git branch: 'main', url: 'https://github.com/DevSecOpsG/helloworldsimplejavaprogram'
+            }
+        }
+        stage('Build by itiyo'){
+            steps{
+            sh ' javac helloworld.java'
+            }
+        }
+        stage('Run by java'){
+            steps{
+            sh 'java Simple'
+            }
+        }
+    }
 }
